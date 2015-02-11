@@ -45,6 +45,7 @@ minutes_urls = meeting_links.map do |meeting_link|
   agenda_list.css("#accordion h3").map{|x| x.attr('id').gsub("header", "") }.map{|id| minutes_url(id) }
 end.flatten.uniq.sort
 
+# This doesn't work right now. It downloads a page that says "Loading..."
 minutes_urls.each do |url|
   file_name = url.split("=").last + ".html"
   puts "Saving #{file_name}"
