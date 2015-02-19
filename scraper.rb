@@ -24,7 +24,8 @@ def report_params(month, year)
 end
 
 def minutes_url(id)
-  "http://app.toronto.ca/tmmis/report/loadReport.jsp?report=MinutesReport&meetingId=#{id}"
+  "http://app.toronto.ca/tmmis/viewPublishedReport.do?function=getMinutesReport&meetingId=#{id}"
+  # "http://app.toronto.ca/tmmis/report/loadReport.jsp?report=MinutesReport&meetingId=#{id}"
 end
 
 def save(file_name, input)
@@ -50,7 +51,12 @@ minutes_urls.each do |url|
   file_name = url.split("=").last + ".html"
   puts "Saving #{file_name}"
   html = open(url).read
-  save(file_name, html)
+  # page = Nokogiri::HTML(html)
+
+  # linky = page.css("meta[http-equiv='refresh']").attr("content").value.gsub("0;url=", "")
+  # "http://app.toronto.ca/" + linky
+  # binding.pry
+  save("reports/" + file_name, html)
 end
 
 binding.pry
