@@ -42,7 +42,10 @@ minutes_urls = meeting_links.map do |meeting_link|
   site = "http://app.toronto.ca" + meeting_link
   agenda_list = Nokogiri::HTML(open(site))
 
-  agenda_list.css("#accordion h3").map{|x| x.attr('id').gsub("header", "") }.map{|id| minutes_url(id) }
+  agenda_list.css("#accordion h3")
+             .map{|x| x.attr('id').gsub("header", "") }
+             .map{|id| minutes_url(id) }
+
 end.flatten.uniq.sort
 
 minutes_urls.each do |url|
