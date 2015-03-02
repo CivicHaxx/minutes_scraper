@@ -3,6 +3,11 @@
                         #getMemberVoteReport
 #viewPublishedReport.do? getAgendaReport
 
+# NOTE: To get individual agenda items from a past meeting: 
+#       /viewAgendaItemHistory.do?itme=2015.CA2.1
+#       Where CA2.1 is the item number
+  
+
 require "net/http"
 require "nokogiri"
 require "open-uri"
